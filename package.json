@@ -4,7 +4,7 @@
   "description": "Project for https://www.theodinproject.com/lessons/nodejs-basic-informational-site",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js"
   },
   "author": "Prin S",
   "license": "ISC",
