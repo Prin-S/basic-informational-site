@@ -3,12 +3,7 @@
   "version": "1.0.0",
   "description": "Project for https://www.theodinproject.com/lessons/nodejs-basic-informational-site",
   "main": "index.js",
-  "scripts": {
-    "dev": "nodemon index.js"
-  },
+  "scripts": {},
   "author": "Prin S",
-  "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^3.1.10"
-  }
+  "license": "ISC"
 }
