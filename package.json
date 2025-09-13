@@ -5,5 +5,8 @@
   "main": "index.js",
   "scripts": {},
   "author": "Prin S",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }

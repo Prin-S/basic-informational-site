@@ -1,6 +1,6 @@
-const http = require('http');
+//const http = require('http');
 const path = require('path');
-const fs = require('fs');
+/*const fs = require('fs');
 
 const server = http.createServer((req, res) => {
   // Set file path
@@ -53,8 +53,34 @@ const server = http.createServer((req, res) => {
       res.end(content, 'utf-8'); // https://nodejs.org/api/http.html#responseenddata-encoding-callback
     }
   });
+});*/
+
+const express = require('express');
+const app = express();
+
+// For homepage
+app.get('/', (req, res) => {
+  res.sendFile('index.html', { root: path.join(__dirname, 'public') });
 });
+
+// For other pages
+app.get('/:page', (req, res) => {
+  res.sendFile(req.params.page, { root: path.join(__dirname, 'public') });
+});
+
+// For non-existent pages / https://expressjs.com/en/starter/faq.html
+app.use((err, req, res, next) => {
+  res.status(404).sendFile('404.html', { root: path.join(__dirname, 'public') });
+})
 
 const PORT = process.env.PORT || 8080;
 
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, (err) => {
+  if (err) {
+    throw err;
+  }
+
+  console.log(`Server running on port ${PORT}`);
+});
+
+/*server.listen(PORT, () => console.log(`Server running on port ${PORT}`));*/
