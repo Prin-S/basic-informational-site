@@ -58,6 +58,9 @@ const server = http.createServer((req, res) => {
 const express = require('express');
 const app = express();
 
+// Serve static files / https://expressjs.com/en/starter/static-files.html
+app.use(express.static(path.join(__dirname, 'public')))
+
 // For homepage
 app.get('/', (req, res) => {
   res.sendFile('index.html', { root: path.join(__dirname, 'public') });
@@ -71,7 +74,7 @@ app.get('/:page', (req, res) => {
 // For non-existent pages / https://expressjs.com/en/starter/faq.html
 app.use((err, req, res, next) => {
   res.status(404).sendFile('404.html', { root: path.join(__dirname, 'public') });
-})
+});
 
 const PORT = process.env.PORT || 8080;
 
@@ -83,4 +86,4 @@ app.listen(PORT, (err) => {
   console.log(`Server running on port ${PORT}`);
 });
 
-/*server.listen(PORT, () => console.log(`Server running on port ${PORT}`));*/
+//server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
