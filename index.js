@@ -73,7 +73,14 @@ app.get('/:page', (req, res) => {
 
 // For non-existent pages / https://expressjs.com/en/starter/faq.html
 app.use((err, req, res, next) => {
-  res.status(404).sendFile('404.html', { root: path.join(__dirname, 'public') });
+  if (err.code == 'ENOENT') {
+    // ENOENT (No such file or directory) -> https://nodejs.org/api/errors.html#common-system-errors
+    // Serve 404.html.
+    res.status(err.status).sendFile('404.html', { root: path.join(__dirname, 'public') });
+  } else {
+    // For server error
+    res.status(err.status).send(`Server error: ${err.code}`);
+  }
 });
 
 const PORT = process.env.PORT || 8080;
